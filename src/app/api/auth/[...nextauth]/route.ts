@@ -1,10 +1,10 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+
+import NextAuth from "next-auth/next";
+import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUser } from "@/lib/actions/user.actions";
-import type { NextApiRequest, NextApiResponse } from 'next';
 
-// Define NextAuth options
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -24,7 +24,7 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt", // Should be "jwt" or "database"
+    strategy: "jwt",
     maxAge: 24 * 60 * 60,
   },
   callbacks: {
@@ -49,12 +49,6 @@ const authOptions: NextAuthOptions = {
   },
 };
 
-// Named export for POST requests
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  return NextAuth(req, res, authOptions);
-}
+const handler = NextAuth(authOptions);
 
-// Named export for GET requests (if needed)
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  return NextAuth(req, res, authOptions);
-}
+export { handler as GET, handler as POST };
