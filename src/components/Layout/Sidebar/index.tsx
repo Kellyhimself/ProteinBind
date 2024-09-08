@@ -28,8 +28,13 @@ const menuGroups = [
     menuItems: [
       {
         icon: <LayoutGrid size={25} />,
-        label: "Dashboard",
+        label: "About",
         route: "/",
+      },
+      {
+        icon: <LayoutGrid size={25} />,
+        label: "Dashboard",
+        route: "/dashboard",
       },
       {
         icon: <Atom size={25} />,
@@ -67,7 +72,7 @@ const menuGroups = [
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-  const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+  const [pageName, setPageName] = useLocalStorage("selectedMenu", "about");
 
   return (
     <>

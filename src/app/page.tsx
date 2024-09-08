@@ -11,9 +11,14 @@ description: 'A leading research platform for drug development',
 }
 import dynamic from 'next/dynamic'
 
-const DashboardIndex = dynamic(() => import('@/components/Dashboard/Index'), {
+/* const DashboardIndex = dynamic(() => import('@/app/Dashboard/Index'), {
   ssr: false
+}) */
+
+const AboutIndex = dynamic(() => import('@/components/about/AboutIndex'), {
+  ssr: true
 })
+
 
 
 export default function Home() {
@@ -21,7 +26,7 @@ export default function Home() {
     <>
       <div className="h-screen">
         <DefaultLayout>
-          <DashboardIndex />
+          <AboutIndex />
         </DefaultLayout>
       </div>
     </>
